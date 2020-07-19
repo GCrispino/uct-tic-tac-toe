@@ -58,18 +58,36 @@ function clearBoardElem() {
 
 function handleEnd(winner) {
   game = false;
-  document.querySelector("#start-button").disabled = false;
+  startButtonElem.disabled = false;
+  clickToStartElem.style.opacity = 1;
+
+  gameResultElem.innerHTML =
+    typeof winner === "undefined" ? "Draw!" : `${winner} won!`;
+  gameResultElem.style.opacity = 1;
+
+  turnIndicator.style.opacity = 0;
 }
 
 const N_ROLLOUTS = 200;
 const C = 1;
 
+// Game state
+// ================================================================
 let board = Board.createNewBoard();
 let boardCoordinates = { left: 0, right: 0, top: 0, bottom: 0 };
 let turn = "O";
 let game = false;
+// ================================================================
 
+// Elements
+// ================================================================
 const boardEl = document.querySelector("#board");
+const cellElems = document.querySelectorAll(".cell");
+const gameResultElem = document.querySelector("#game-result");
+const startButtonElem = document.querySelector("#start-button");
+const clickToStartElem = document.querySelector("#click-to-start");
+const turnIndicator = document.querySelector("#turn-indicator");
+// ================================================================
 
 // Callback function to execute when mutations are observed
 const callback = function(mutationsList) {
@@ -93,22 +111,7 @@ const observer = new ResizeObserver(callback);
 // Start observing the target node for configured mutations
 observer.observe(boardEl);
 
-function playMove(i, j, turn, board) {
-  draw(turn, i, j);
-  board = Board.makeMove(j - 1, i - 1, turn, board);
-  const win = Board.checkWin(board);
-  if (win) {
-    handleEnd(win);
-    return [win, board];
-  }
-  if (Board.checkDraw(board)) {
-    handleEnd();
-    return ["", board];
-  }
-  return [false, board];
-}
-
-document.querySelectorAll(".cell").forEach(el =>
+cellElems.forEach(el =>
   el.addEventListener("click", function(e) {
     if (!game) return;
 
@@ -127,19 +130,27 @@ document.querySelectorAll(".cell").forEach(el =>
     const [move] = uct(turn_, board, N_ROLLOUTS, C);
     console.log("UCT finished: ", move);
 
-    const split_ = move.split("-");
+    showTurn(turn_);
 
+    const split_ = move.split("-");
     const i_ = parseInt(split_[0]);
     const j_ = parseInt(split_[1]);
 
-    [resMove, newBoard] = playMove(i_, j_, turn_, board);
-    board = newBoard;
+    setTimeout(() => {
+      [resMove, newBoard] = playMove(i_, j_, turn_, board);
+      board = newBoard;
+      showTurn(turn);
+    }, 1000);
   })
 );
 
-document.querySelector("#start-button").addEventListener("click", e => {
+startButtonElem.addEventListener("click", e => {
   board = Board.createNewBoard();
-  clearBoardElem(boardEl);
+  clearBoardElem();
   e.target.disabled = true;
   game = true;
+  showTurn(turn);
+  clickToStartElem.style.opacity = 0;
+  gameResultElem.style.opacity = 0;
+  turnIndicator.style.opacity = 1;
 });

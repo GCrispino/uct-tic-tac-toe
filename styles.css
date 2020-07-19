@@ -16,6 +16,14 @@ body{
     font-size: 1em;
 }
 
+#game-result{
+    opacity: 0;
+}
+
+#turn-indicator{
+    opacity: 0;
+}
+
 .row{
     display: flex;
     flex-direction: row;
