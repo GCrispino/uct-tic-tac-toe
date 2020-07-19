@@ -129,17 +129,13 @@ exports.checkWin = checkWin;
 exports.getFreeCells = getFreeCells;
 exports.checkDraw = checkDraw;
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 function createNewBoard() {
   return [["", "", ""], ["", "", ""], ["", "", ""]];
@@ -214,25 +210,21 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
 
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 function uct(turn, board, nRollouts, C) {
   var rootNode = createNode(turn);
@@ -330,19 +322,13 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
 
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function toggleTurn(turn) {
   return turn === "O" ? "X" : "O";
@@ -416,17 +402,23 @@ function handleEnd(winner) {
   turnIndicator.style.opacity = 0;
 }
 
+function startGame(e) {
+  alert("teste");
+  board = Board.createNewBoard();
+  clearBoardElem();
+  e.target.disabled = true;
+  game = true;
+  showTurn(turn);
+  clickToStartElem.style.opacity = 0;
+  gameResultElem.style.opacity = 0;
+  turnIndicator.style.opacity = 1;
+}
+
 var N_ROLLOUTS = 200;
 var C = 1; // Game state
 // ================================================================
 
 var board = Board.createNewBoard();
-var boardCoordinates = {
-  left: 0,
-  right: 0,
-  top: 0,
-  bottom: 0
-};
 var turn = "O";
 var game = false; // ================================================================
 // Elements
@@ -438,96 +430,63 @@ var gameResultElem = document.querySelector("#game-result");
 var startButtonElem = document.querySelector("#start-button");
 var clickToStartElem = document.querySelector("#click-to-start");
 var turnIndicator = document.querySelector("#turn-indicator"); // ================================================================
-// Callback function to execute when mutations are observed
 
-var callback = function callback(mutationsList) {
-  // Use traditional 'for loops' for IE 11
-  var _iterator = _createForOfIteratorHelper(mutationsList),
-      _step;
+document.addEventListener("DOMContentLoaded", function () {
+  // Elements
+  // ================================================================
+  boardEl = document.querySelector("#board");
+  cellElems = document.querySelectorAll(".cell");
+  gameResultElem = document.querySelector("#game-result");
+  startButtonElem = document.querySelector("#start-button");
+  clickToStartElem = document.querySelector("#click-to-start");
+  turnIndicator = document.querySelector("#turn-indicator"); // ================================================================
 
-  try {
-    for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var mutation = _step.value;
+  cellElems.forEach(function (el) {
+    return el.addEventListener("click", function (e) {
+      if (!game) return;
+      var id = e.target.id;
+      var split = id.split("-");
+      var i = parseInt(split[1]);
+      var j = parseInt(split[2]);
 
-      if (mutation.target === boardEl) {
-        var _mutation$target$getB = mutation.target.getBoundingClientRect(),
-            left = _mutation$target$getB.left,
-            right = _mutation$target$getB.right,
-            top = _mutation$target$getB.top,
-            bottom = _mutation$target$getB.bottom;
+      var _playMove = playMove(i, j, turn, board),
+          _playMove2 = _slicedToArray(_playMove, 2),
+          resMove = _playMove2[0],
+          newBoard = _playMove2[1];
 
-        boardCoordinates = {
-          left: left,
-          right: right,
-          top: top,
-          bottom: bottom
-        };
-      }
-    }
-  } catch (err) {
-    _iterator.e(err);
-  } finally {
-    _iterator.f();
-  }
-}; // Create an observer instance linked to the callback function
-
-
-var observer = new ResizeObserver(callback); // Start observing the target node for configured mutations
-
-observer.observe(boardEl);
-cellElems.forEach(function (el) {
-  return el.addEventListener("click", function (e) {
-    if (!game) return;
-    var id = e.target.id;
-    var split = id.split("-");
-    var i = parseInt(split[1]);
-    var j = parseInt(split[2]);
-
-    var _playMove = playMove(i, j, turn, board),
-        _playMove2 = _slicedToArray(_playMove, 2),
-        resMove = _playMove2[0],
-        newBoard = _playMove2[1];
-
-    board = newBoard;
-
-    if (resMove !== false) {
-      return;
-    }
-
-    var turn_ = toggleTurn(turn);
-
-    var _uct = (0, _uct3.uct)(turn_, board, N_ROLLOUTS, C),
-        _uct2 = _slicedToArray(_uct, 1),
-        move = _uct2[0];
-
-    console.log("UCT finished: ", move);
-    showTurn(turn_);
-    var split_ = move.split("-");
-    var i_ = parseInt(split_[0]);
-    var j_ = parseInt(split_[1]);
-    setTimeout(function () {
-      var _playMove3 = playMove(i_, j_, turn_, board);
-
-      var _playMove4 = _slicedToArray(_playMove3, 2);
-
-      resMove = _playMove4[0];
-      newBoard = _playMove4[1];
       board = newBoard;
-      showTurn(turn);
-    }, 1000);
+
+      if (resMove !== false) {
+        return;
+      }
+
+      var turn_ = toggleTurn(turn);
+
+      var _uct = (0, _uct3.uct)(turn_, board, N_ROLLOUTS, C),
+          _uct2 = _slicedToArray(_uct, 1),
+          move = _uct2[0];
+
+      console.log("UCT finished: ", move);
+      showTurn(turn_);
+      var split_ = move.split("-");
+      var i_ = parseInt(split_[0]);
+      var j_ = parseInt(split_[1]);
+      setTimeout(function () {
+        var _playMove3 = playMove(i_, j_, turn_, board);
+
+        var _playMove4 = _slicedToArray(_playMove3, 2);
+
+        resMove = _playMove4[0];
+        newBoard = _playMove4[1];
+        board = newBoard;
+        showTurn(turn);
+      }, 1000);
+    });
   });
+  startButtonElem.addEventListener("click", startGame);
+  startButtonElem.addEventListener("touchstart", startGame);
 });
-startButtonElem.addEventListener("click", function (e) {
-  board = Board.createNewBoard();
-  clearBoardElem();
-  e.target.disabled = true;
-  game = true;
-  showTurn(turn);
-  clickToStartElem.style.opacity = 0;
-  gameResultElem.style.opacity = 0;
-  turnIndicator.style.opacity = 1;
-});
-},{"./board":"board.js","./uct":"uct.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./board":"board.js","./uct":"uct.js"}],"../../../../../../usr/lib/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -555,7 +514,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37817" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40791" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -731,5 +690,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel/src/builtins/hmr-runtime.js","index.js"], null)
+},{}]},{},["../../../../../../usr/lib/node_modules/parcel/src/builtins/hmr-runtime.js","index.js"], null)
 //# sourceMappingURL=/src.e31bb0bc.js.map
