@@ -48,14 +48,11 @@ function selectMove(node, initTurn, moves, C) {
   const func = Math[node.turn === initTurn ? "max" : "min"];
   const bestVal = func(...uctVals);
   const bestMoves = moves.filter((_, i) => uctVals[i] === bestVal);
-  //console.log("- ", initTurn, node.turn, uctVals, bestVal);
 
   const chosenIndex = getRandomIntInclusive(0, bestMoves.length - 1);
   const chosenMove = bestMoves[chosenIndex];
   const chosenChild = node.children[`${chosenMove[0]}-${chosenMove[1]}`];
-  //console.log("  - ", chosenMove, chosenChild);
 
-  //console.log();
   return [chosenMove, chosenChild];
 }
 
@@ -65,12 +62,10 @@ function search(node, turn, initTurn, board, C) {
     const value = won === initTurn ? 1 : -1;
     node.value = value;
 
-    //console.log("WON: ", won, turn, value);
     return value;
   }
   if (Board.checkDraw(board)) {
     node.value = 0;
-    //console.log("DRAW");
     return 0;
   }
 

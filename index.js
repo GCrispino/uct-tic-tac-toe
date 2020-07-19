@@ -25,14 +25,30 @@ function createO() {
 function draw(turn, i, j) {
   const elems = turn === "X" ? createX() : createO();
   const cellElem = document.querySelector(`#cell-${i}-${j}`);
-  console.log(cellElem, elems);
 
   Array.from(elems).forEach(e => cellElem.appendChild(e));
 }
 
-function clearBoardElem(boardEl) {
-  const cellElems = Array.from(boardEl.querySelectorAll(".cell"));
+function playMove(i, j, turn, board) {
+  draw(turn, i, j);
+  board = Board.makeMove(j - 1, i - 1, turn, board);
+  const win = Board.checkWin(board);
+  if (win) {
+    handleEnd(win);
+    return [win, board];
+  }
+  if (Board.checkDraw(board)) {
+    handleEnd();
+    return ["", board];
+  }
+  return [false, board];
+}
 
+function showTurn(turn) {
+  document.querySelector("#current-turn").innerHTML = turn;
+}
+
+function clearBoardElem() {
   cellElems.forEach(elem =>
     Array.from(elem.childNodes)
       .reverse()
@@ -42,7 +58,6 @@ function clearBoardElem(boardEl) {
 
 function handleEnd(winner) {
   game = false;
-  console.log("end");
   document.querySelector("#start-button").disabled = false;
 }
 
@@ -116,7 +131,6 @@ document.querySelectorAll(".cell").forEach(el =>
 
     const i_ = parseInt(split_[0]);
     const j_ = parseInt(split_[1]);
-    console.log(i_, j_);
 
     [resMove, newBoard] = playMove(i_, j_, turn_, board);
     board = newBoard;
