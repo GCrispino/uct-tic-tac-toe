@@ -8,14 +8,18 @@ This code implements a two player game, where the first player is an user and th
 Demo available at https://gcrispino.github.io/uct-tic-tac-toe.
 
 ### Running
-All builds are done using [Parcel](https://parceljs.org).
-
-To run a live server:
+First, install dev dependencies:
 ```
-$ parcel src/index.html
+$ npm install
+```
+
+
+To run a live development server:
+```
+$ npm start
 ```
 
 To build to dist folder:
 ```
-$ parcel build src/index.html
+$ npm run build
 ```
