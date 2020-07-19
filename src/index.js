@@ -68,83 +68,8 @@ function handleEnd(winner) {
   turnIndicator.style.opacity = 0;
 }
 
-const N_ROLLOUTS = 200;
-const C = 1;
-
-// Game state
-// ================================================================
-let board = Board.createNewBoard();
-let boardCoordinates = { left: 0, right: 0, top: 0, bottom: 0 };
-let turn = "O";
-let game = false;
-// ================================================================
-
-// Elements
-// ================================================================
-const boardEl = document.querySelector("#board");
-const cellElems = document.querySelectorAll(".cell");
-const gameResultElem = document.querySelector("#game-result");
-const startButtonElem = document.querySelector("#start-button");
-const clickToStartElem = document.querySelector("#click-to-start");
-const turnIndicator = document.querySelector("#turn-indicator");
-// ================================================================
-
-// Callback function to execute when mutations are observed
-const callback = function(mutationsList) {
-  // Use traditional 'for loops' for IE 11
-  for (let mutation of mutationsList) {
-    if (mutation.target === boardEl) {
-      const {
-        left,
-        right,
-        top,
-        bottom
-      } = mutation.target.getBoundingClientRect();
-      boardCoordinates = { left, right, top, bottom };
-    }
-  }
-};
-
-// Create an observer instance linked to the callback function
-const observer = new ResizeObserver(callback);
-
-// Start observing the target node for configured mutations
-observer.observe(boardEl);
-
-cellElems.forEach(el =>
-  el.addEventListener("click", function(e) {
-    if (!game) return;
-
-    const { id } = e.target;
-    const split = id.split("-");
-    const i = parseInt(split[1]);
-    const j = parseInt(split[2]);
-
-    let [resMove, newBoard] = playMove(i, j, turn, board);
-    board = newBoard;
-    if (resMove !== false) {
-      return;
-    }
-
-    const turn_ = toggleTurn(turn);
-    const [move] = uct(turn_, board, N_ROLLOUTS, C);
-    console.log("UCT finished: ", move);
-
-    showTurn(turn_);
-
-    const split_ = move.split("-");
-    const i_ = parseInt(split_[0]);
-    const j_ = parseInt(split_[1]);
-
-    setTimeout(() => {
-      [resMove, newBoard] = playMove(i_, j_, turn_, board);
-      board = newBoard;
-      showTurn(turn);
-    }, 1000);
-  })
-);
-
-startButtonElem.addEventListener("click", e => {
+function startGame(e) {
+  alert("teste");
   board = Board.createNewBoard();
   clearBoardElem();
   e.target.disabled = true;
@@ -153,4 +78,71 @@ startButtonElem.addEventListener("click", e => {
   clickToStartElem.style.opacity = 0;
   gameResultElem.style.opacity = 0;
   turnIndicator.style.opacity = 1;
+}
+
+const N_ROLLOUTS = 200;
+const C = 1;
+
+// Game state
+// ================================================================
+let board = Board.createNewBoard();
+let turn = "O";
+let game = false;
+// ================================================================
+// Elements
+// ================================================================
+let boardEl = document.querySelector("#board");
+let cellElems = document.querySelectorAll(".cell");
+let gameResultElem = document.querySelector("#game-result");
+let startButtonElem = document.querySelector("#start-button");
+let clickToStartElem = document.querySelector("#click-to-start");
+let turnIndicator = document.querySelector("#turn-indicator");
+// ================================================================
+
+document.addEventListener("DOMContentLoaded", function() {
+  // Elements
+  // ================================================================
+  boardEl = document.querySelector("#board");
+  cellElems = document.querySelectorAll(".cell");
+  gameResultElem = document.querySelector("#game-result");
+  startButtonElem = document.querySelector("#start-button");
+  clickToStartElem = document.querySelector("#click-to-start");
+  turnIndicator = document.querySelector("#turn-indicator");
+  // ================================================================
+
+  cellElems.forEach(el =>
+    el.addEventListener("click", function(e) {
+      if (!game) return;
+
+      const { id } = e.target;
+      const split = id.split("-");
+      const i = parseInt(split[1]);
+      const j = parseInt(split[2]);
+
+      let [resMove, newBoard] = playMove(i, j, turn, board);
+      board = newBoard;
+      if (resMove !== false) {
+        return;
+      }
+
+      const turn_ = toggleTurn(turn);
+      const [move] = uct(turn_, board, N_ROLLOUTS, C);
+      console.log("UCT finished: ", move);
+
+      showTurn(turn_);
+
+      const split_ = move.split("-");
+      const i_ = parseInt(split_[0]);
+      const j_ = parseInt(split_[1]);
+
+      setTimeout(() => {
+        [resMove, newBoard] = playMove(i_, j_, turn_, board);
+        board = newBoard;
+        showTurn(turn);
+      }, 1000);
+    })
+  );
+
+  startButtonElem.addEventListener("click", startGame);
+  startButtonElem.addEventListener("touchstart", startGame);
 });
