@@ -69,7 +69,6 @@ function handleEnd(winner) {
 }
 
 function startGame(e) {
-  alert("teste");
   board = Board.createNewBoard();
   clearBoardElem();
   e.target.disabled = true;
@@ -80,7 +79,7 @@ function startGame(e) {
   turnIndicator.style.opacity = 1;
 }
 
-const N_ROLLOUTS = 200;
+const N_ROLLOUTS = 500;
 const C = 1;
 
 // Game state
