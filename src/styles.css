@@ -6,8 +6,8 @@ body{
     margin: auto;
     display: flex;
     flex-direction: column;
-    width: 50%;
-    height: 80%;
+    width: 25rem;
+    height: 20rem;
     border: 2px solid black;
 }
 
